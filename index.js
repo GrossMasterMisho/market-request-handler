@@ -8,9 +8,10 @@ app.use(cors());
 const port = process.env.PORT || 3000;
 
 let resp = { data: {}, requests: 0 };
+let date = null;
 
 app.get("/", (req, res) => {
-  res.json(resp.requests);
+  res.json({ requests: resp.requests, lastReq: date });
 });
 
 const getData = async () => {
@@ -26,7 +27,17 @@ const getData = async () => {
   );
 };
 
+const fetchProducts = async () => {
+  await axios
+    .get("https://online-market-project.herokuapp.com/product/fetchProducts")
+    .then(() => {
+      const d = new Date();
+      date = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    });
+};
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
   setInterval(getData, 60000);
+  setInterval(fetchProducts, 5000);
 });
