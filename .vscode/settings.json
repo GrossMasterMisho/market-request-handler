@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/2b8480e6-9f31-4084-b0a2-b9688cbd4ecf/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/online-market-request-sender",
+    "appService.deploySubpath": "."
+}

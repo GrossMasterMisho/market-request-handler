@@ -19,6 +19,11 @@ const getData = async () => {
     .then(({ data }) => {
       resp = { data: data, requests: resp.requests + 1 };
     });
+
+  await axios.get("https://online-market-project.herokuapp.com/");
+  await axios.get(
+    "https://online-market-project.herokuapp.com/?category=technology"
+  );
 };
 
 app.listen(port, () => {
