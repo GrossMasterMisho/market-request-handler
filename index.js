@@ -7,10 +7,18 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
+let resp = { data: {}, requests: 0 };
+
+app.get("/", (req, res) => {
+  res.json(resp.requests);
+});
+
 const getData = async () => {
   const response = await axios
     .get("https://online-market-project.herokuapp.com/product/fetchProducts")
-    .then(({ data }) => console.log(data));
+    .then(({ data }) => {
+      resp = { data: data, requests: resp.requests + 1 };
+    });
 };
 
 app.listen(port, () => {
