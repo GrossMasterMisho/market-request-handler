@@ -23,5 +23,5 @@ const getData = async () => {
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-  setInterval(getData, 5000);
+  setInterval(getData, 60000);
 });
